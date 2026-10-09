@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Dashboard | Storage Boxes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { warmWhite: '#F9F8F6', cream: '#F3EFEA', sand: '#E6DCCF', taupe: '#9C8F82', charcoal: '#2A2C2A', darkBg: '#1A1C1A', accent: '#C5A880' } }, fontFamily: { sans: ['Outfit', 'sans-serif'], serif: ['Playfair Display', 'serif'] } } } }
+    </script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="bg-brand-warmWhite text-brand-charcoal dark:bg-brand-darkBg dark:text-brand-warmWhite font-sans antialiased flex h-screen overflow-hidden">
+    
+    <!-- Sidebar -->
+    <aside id="dashboard-sidebar" class="w-64 bg-white dark:bg-brand-charcoal/40 border-r border-brand-sand/50 dark:border-brand-charcoal h-full flex flex-col fixed lg:relative z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out shrink-0">
+        <button id="close-sidebar" class="lg:hidden absolute top-6 right-4 text-2xl text-brand-charcoal dark:text-brand-warmWhite focus:outline-none">
+            <i class='bx bx-x'></i>
+        </button>
+        <div class="h-20 flex items-center px-8 border-b border-brand-sand/50 dark:border-brand-charcoal">
+            <a href="index.html" class="font-serif text-xl font-semibold flex items-center gap-2"><i class='bx bx-box text-brand-accent'></i>BOXED.</a>
+        </div>
+        <div class="p-6">
+            <p class="text-xs uppercase tracking-widest text-brand-taupe font-medium mb-4">Dashboard</p>
+            <nav class="space-y-2">
+                <a href="#" class="sidebar-tab flex items-center gap-3 px-3 py-2.5 bg-brand-cream dark:bg-brand-charcoal rounded-md text-sm font-medium text-brand-accent" data-target="panel-overview"><i class='bx bxs-dashboard text-lg'></i> Overview</a>
+                <a href="#" class="sidebar-tab flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal transition-colors" data-target="panel-orders"><i class='bx bx-shopping-bag text-lg text-brand-taupe'></i> My Orders</a>
+                <a href="#" class="sidebar-tab flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal transition-colors" data-target="panel-wishlist"><i class='bx bx-heart text-lg text-brand-taupe'></i> Wishlist</a>
+                <a href="#" class="sidebar-tab flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal transition-colors" data-target="panel-ideas"><i class='bx bx-bulb text-lg text-brand-taupe'></i> Saved Ideas</a>
+            </nav>
+            <p class="text-xs uppercase tracking-widest text-brand-taupe font-medium mb-4 mt-8">Settings</p>
+            <nav class="space-y-2">
+                <a href="#" class="sidebar-tab flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal transition-colors" data-target="panel-profile"><i class='bx bx-user text-lg text-brand-taupe'></i> Profile</a>
+                <a href="#" class="sidebar-tab flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal transition-colors" data-target="panel-notifications"><i class='bx bx-bell text-lg text-brand-taupe'></i> Notifications</a>
+            </nav>
+        </div>
+        <div class="mt-auto p-6 border-t border-brand-sand/50 dark:border-brand-charcoal">
+            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"><i class='bx bx-log-out text-lg'></i> Sign Out</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden bg-brand-warmWhite dark:bg-brand-darkBg">
+        <!-- Header -->
+        <header class="lg:hidden flex items-center justify-between p-4 bg-white dark:bg-brand-charcoal/40 border-b border-brand-sand/30 dark:border-brand-charcoal shrink-0">
+            <a href="index.html" class="font-serif text-xl font-semibold flex items-center gap-2"><i class='bx bx-box text-brand-accent'></i>BOXED.</a>
+            <button id="open-sidebar" class="text-2xl text-brand-charcoal dark:text-brand-warmWhite focus:outline-none">
+                <i class='bx bx-menu'></i>
+            </button>
+        </header>
+        <div class="flex-1 overflow-y-auto p-8 relative">
+            
+            <!-- OVERVIEW PANEL -->
+            <div id="panel-overview" class="dashboard-panel block">
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+                    <div class="bg-white dark:bg-brand-charcoal/30 p-6 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-brand-taupe text-sm mb-1">Total Orders</p>
+                                <h3 class="text-3xl font-serif">12</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-brand-cream dark:bg-brand-charcoal flex items-center justify-center text-brand-accent"><i class='bx bx-package text-xl'></i></div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-brand-charcoal/30 p-6 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-brand-taupe text-sm mb-1">Wishlist Items</p>
+                                <h3 class="text-3xl font-serif">8</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-brand-cream dark:bg-brand-charcoal flex items-center justify-center text-brand-accent"><i class='bx bx-heart text-xl'></i></div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-brand-charcoal/30 p-6 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <p class="text-brand-taupe text-sm mb-1">Store Credit</p>
+                                <h3 class="text-3xl font-serif">$45.00</h3>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-brand-cream dark:bg-brand-charcoal flex items-center justify-center text-brand-accent"><i class='bx bx-wallet text-xl'></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="bg-white dark:bg-brand-charcoal/30 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal overflow-hidden">
+                    <div class="p-6 border-b border-brand-sand/30 dark:border-brand-charcoal flex justify-between items-center">
+                        <h3 class="font-serif text-xl">Recent Orders</h3>
+                        <a href="#" class="text-sm font-medium text-brand-accent hover:underline">View All</a>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-brand-cream dark:bg-brand-charcoal/50 text-sm text-brand-taupe uppercase tracking-wider">
+                                    <th class="py-4 px-6 font-medium">Order ID</th>
+                                    <th class="py-4 px-6 font-medium">Date</th>
+                                    <th class="py-4 px-6 font-medium">Items</th>
+                                    <th class="py-4 px-6 font-medium">Status</th>
+                                    <th class="py-4 px-6 font-medium">Total</th>
+                                    <th class="py-4 px-6 font-medium"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                <tr class="border-b border-brand-sand/30 dark:border-brand-charcoal hover:bg-brand-warmWhite dark:hover:bg-brand-charcoal/20 transition-colors">
+                                    <td class="py-4 px-6 font-medium">#ORD-0921</td>
+                                    <td class="py-4 px-6 text-brand-taupe">Oct 02, 2026</td>
+                                    <td class="py-4 px-6">Ultimate Pantry Setup</td>
+                                    <td class="py-4 px-6"><span class="px-2 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded text-xs font-medium">Delivered</span></td>
+                                    <td class="py-4 px-6 font-medium">$145.00</td>
+                                    <td class="py-4 px-6 text-right"><button class="text-brand-accent hover:underline font-medium">Track</button></td>
+                                </tr>
+                                <tr class="hover:bg-brand-warmWhite dark:hover:bg-brand-charcoal/20 transition-colors">
+                                    <td class="py-4 px-6 font-medium">#ORD-0873</td>
+                                    <td class="py-4 px-6 text-brand-taupe">Sep 15, 2026</td>
+                                    <td class="py-4 px-6">Modular Glass Canister (x3)</td>
+                                    <td class="py-4 px-6"><span class="px-2 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 rounded text-xs font-medium">Processing</span></td>
+                                    <td class="py-4 px-6 font-medium">$96.00</td>
+                                    <td class="py-4 px-6 text-right"><button class="text-brand-accent hover:underline font-medium">Track</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MY ORDERS PANEL -->
+            <div id="panel-orders" class="dashboard-panel hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-serif mb-2">My Orders</h2>
+                    <p class="text-brand-taupe">View and track all your recent purchases.</p>
+                </div>
+                <div class="bg-white dark:bg-brand-charcoal/30 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal p-8 text-center">
+                    <i class='bx bx-package text-6xl text-brand-sand mb-4'></i>
+                    <h3 class="text-xl font-medium mb-2">No active orders found</h3>
+                    <p class="text-brand-taupe mb-6 max-w-md mx-auto">Looks like you haven't placed any new orders recently. Check out our new collections.</p>
+                    <a href="collections.html" class="inline-block bg-brand-charcoal text-brand-warmWhite px-6 py-2 rounded hover:bg-brand-accent transition-colors">Shop Collections</a>
+                </div>
+            </div>
+
+            <!-- WISHLIST PANEL -->
+            <div id="panel-wishlist" class="dashboard-panel hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-serif mb-2">Wishlist</h2>
+                    <p class="text-brand-taupe">Items you've saved for later.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-brand-charcoal/30 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal overflow-hidden group">
+                        <div class="relative aspect-square bg-brand-cream p-6 flex items-center justify-center">
+                            <i class='bx bx-heart absolute top-4 right-4 text-xl text-red-500 cursor-pointer'></i>
+                            <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?w=500&auto=format&fit=crop" class="w-full h-full object-cover rounded-xl" alt="Linen Bins">
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-lg mb-1">Set of 3 Linen Bins</h3>
+                            <p class="text-brand-taupe mb-4">$45.00</p>
+                            <button class="w-full py-2 border border-brand-charcoal dark:border-brand-warmWhite rounded hover:bg-brand-charcoal hover:text-brand-warmWhite transition-colors">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SAVED IDEAS PANEL -->
+            <div id="panel-ideas" class="dashboard-panel hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-serif mb-2">Saved Ideas</h2>
+                    <p class="text-brand-taupe">Inspiration and transformations you've saved.</p>
+                </div>
+                <div class="bg-white dark:bg-brand-charcoal/30 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal p-8 text-center">
+                    <i class='bx bx-bulb text-6xl text-brand-sand mb-4'></i>
+                    <h3 class="text-xl font-medium mb-2">Your inspiration board is empty</h3>
+                    <p class="text-brand-taupe mb-6 max-w-md mx-auto">Explore our journal and ideas page to find organizing inspiration for your home.</p>
+                    <a href="ideas.html" class="inline-block bg-brand-charcoal text-brand-warmWhite px-6 py-2 rounded hover:bg-brand-accent transition-colors">Explore Ideas</a>
+                </div>
+            </div>
+
+            <!-- PROFILE PANEL -->
+            <div id="panel-profile" class="dashboard-panel hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-serif mb-2">Profile Settings</h2>
+                    <p class="text-brand-taupe">Manage your account details and preferences.</p>
+                </div>
+                <div class="bg-white dark:bg-brand-charcoal/30 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal p-8 max-w-2xl">
+                    <form class="space-y-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">First Name</label>
+                                <input type="text" value="Shalani" class="w-full px-4 py-2 bg-transparent border border-brand-sand/50 dark:border-brand-charcoal rounded focus:outline-none focus:border-brand-accent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Last Name</label>
+                                <input type="text" value="A" class="w-full px-4 py-2 bg-transparent border border-brand-sand/50 dark:border-brand-charcoal rounded focus:outline-none focus:border-brand-accent">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email Address</label>
+                            <input type="email" value="shalani@example.com" class="w-full px-4 py-2 bg-transparent border border-brand-sand/50 dark:border-brand-charcoal rounded focus:outline-none focus:border-brand-accent">
+                        </div>
+                        <button type="button" class="bg-brand-accent text-white px-6 py-2 rounded hover:bg-brand-charcoal transition-colors">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- NOTIFICATIONS PANEL -->
+            <div id="panel-notifications" class="dashboard-panel hidden">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-serif mb-2">Notifications</h2>
+                    <p class="text-brand-taupe">Manage how we contact you.</p>
+                </div>
+                <div class="bg-white dark:bg-brand-charcoal/30 rounded-2xl border border-brand-sand/30 dark:border-brand-charcoal p-8 max-w-2xl space-y-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-medium">Order Updates</h4>
+                            <p class="text-sm text-brand-taupe">Get notified when your order ships.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-brand-accent"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-medium">Promotions & Offers</h4>
+                            <p class="text-sm text-brand-taupe">Receive discounts and exclusive offers.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-brand-accent"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script>
+        // Tab Switching Logic
+        const tabs = document.querySelectorAll('.sidebar-tab');
+        const panels = document.querySelectorAll('.dashboard-panel');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Reset all tabs
+                tabs.forEach(t => {
+                    t.classList.remove('bg-brand-cream', 'dark:bg-brand-charcoal', 'text-brand-accent');
+                    t.classList.add('hover:bg-brand-cream', 'dark:hover:bg-brand-charcoal');
+                    const icon = t.querySelector('i');
+                    if(icon && icon.classList.contains('text-lg') && !icon.classList.contains('bxs-dashboard')) {
+                        icon.classList.add('text-brand-taupe');
+                    }
+                });
+
+                // Set active tab
+                tab.classList.add('bg-brand-cream', 'dark:bg-brand-charcoal', 'text-brand-accent');
+                tab.classList.remove('hover:bg-brand-cream', 'dark:hover:bg-brand-charcoal');
+                const activeIcon = tab.querySelector('i');
+                if(activeIcon) {
+                    activeIcon.classList.remove('text-brand-taupe');
+                }
+
+                // Hide all panels
+                panels.forEach(panel => {
+                    panel.classList.add('hidden');
+                    panel.classList.remove('block');
+                });
+
+                // Show target panel
+                const targetId = tab.getAttribute('data-target');
+                const targetPanel = document.getElementById(targetId);
+                if (targetPanel) {
+                    targetPanel.classList.remove('hidden');
+                    targetPanel.classList.add('block');
+                }
+                
+                // Close sidebar on mobile and tablet after clicking a tab
+                if (window.innerWidth < 1024) {
+                    const sidebar = document.getElementById('dashboard-sidebar');
+                    if (sidebar) sidebar.classList.add('-translate-x-full');
+                }
+            });
+        });
+
+        // Mobile sidebar toggle
+        const dashboardSidebar = document.getElementById('dashboard-sidebar');
+        const openSidebarBtn = document.getElementById('open-sidebar');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+
+        if(openSidebarBtn && closeSidebarBtn && dashboardSidebar) {
+            openSidebarBtn.addEventListener('click', () => {
+                dashboardSidebar.classList.remove('-translate-x-full');
+            });
+            closeSidebarBtn.addEventListener('click', () => {
+                dashboardSidebar.classList.add('-translate-x-full');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Ideas | Storage Boxes</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { warmWhite: '#F9F8F6', cream: '#F3EFEA', sand: '#E6DCCF', taupe: '#9C8F82', charcoal: '#2A2C2A', darkBg: '#1A1C1A', accent: '#C5A880' } }, fontFamily: { sans: ['Outfit', 'sans-serif'], serif: ['Playfair Display', 'serif'] } } } }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .before-after-slider {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        .ba-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .ba-after {
+            z-index: 10;
+            clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+        }
+
+        .ba-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            bottom: 0;
+            width: 4px;
+            background: white;
+            z-index: 20;
+            transform: translateX(-50%);
+            cursor: ew-resize;
+        }
+
+        .ba-slider::after {
+            content: '< >';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: black;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body
+    class="bg-brand-warmWhite text-brand-charcoal dark:bg-brand-darkBg dark:text-brand-warmWhite font-sans antialiased overflow-x-hidden">
+
+    <!-- Header -->
+    <header id="main-header"
+        class="fixed w-full top-0 z-50 transition-all duration-300 bg-brand-warmWhite/80 dark:bg-brand-darkBg/80 backdrop-blur-md border-b border-brand-sand/30 dark:border-brand-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex lg:space-x-4 xl:space-x-8">
+                    <a href="index.html"
+                        class="nav-link active relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Home</a>
+                    <a href="products.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Products</a>
+                    <a href="collections.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Collections</a>
+                    <a href="ideas.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Ideas</a>
+                    <a href="about.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">About</a>
+                    <a href="dashboard.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Dashboard</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden lg:flex items-center lg:space-x-3 xl:space-x-5">
+                    <a href="dashboard.html" class="text-xl hover:text-brand-accent transition-colors"><i
+                            class='bx bx-user'></i></a>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-heart'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                    </button>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-shopping-bag'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <div class="h-5 w-px bg-brand-sand dark:bg-brand-charcoal mx-1 xl:mx-2"></div>
+                    <button id="theme-toggle" class="text-xl hover:text-brand-accent transition-colors">
+                        <i class='bx bx-moon'></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="text-2xl text-brand-charcoal dark:text-brand-warmWhite focus:outline-none">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-brand-warmWhite dark:bg-brand-darkBg absolute w-full border-b border-brand-sand/30 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Home</a>
+                <a href="products.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Products</a>
+                <a href="collections.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Collections</a>
+                <a href="ideas.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Ideas</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">About</a>
+                <a href="dashboard.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Dashboard</a>
+                <div class="border-t border-brand-sand/50 pt-4 flex space-x-6 px-3">
+                    <a href="dashboard.html" class="text-xl"><i class='bx bx-user'></i></a>
+                    <button class="text-xl"><i class='bx bx-heart'></i></button>
+                    <button class="text-xl"><i class='bx bx-shopping-bag'></i></button>
+                    <button id="theme-toggle-mobile" class="text-xl"><i class='bx bx-moon'></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-20">
+        <section class="max-w-7xl mx-auto px-4 text-center mb-16" data-aos="fade-in">
+            <h1 class="text-4xl md:text-5xl font-serif mb-4">Organization Ideas</h1>
+            <p class="text-brand-taupe max-w-2xl mx-auto">Expert tips, visual transformations, and guides to achieving a
+                perfectly harmonious home.</p>
+        </section>
+
+        <!-- Before / After Transformation -->
+        <section class="max-w-5xl mx-auto px-4 mb-24" data-aos="fade-up">
+            <h2 class="text-2xl font-serif mb-6 text-center">The Pantry Transformation</h2>
+            <div class="before-after-slider rounded-2xl shadow-xl">
+                <!-- In a real app, use different messy/clean images -->
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop"
+                    class="ba-image ba-before grayscale blur-[2px]" alt="Before">
+                <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop"
+                    class="ba-image ba-after" alt="After">
+                <div class="ba-slider"></div>
+                <div class="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 rounded text-sm z-10">Before</div>
+                <div class="absolute top-4 right-4 bg-brand-accent text-white px-3 py-1 rounded text-sm z-30">After
+                </div>
+            </div>
+        </section>
+
+        <!-- Magazine Style Guides -->
+        <section class="max-w-7xl mx-auto px-4 mb-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Article 1 -->
+                <article class="group cursor-pointer" data-aos="fade-up">
+                    <div class="overflow-hidden rounded-xl mb-6 aspect-[4/3]">
+                        <img src="https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-xs uppercase text-brand-accent tracking-widest mb-2">Kitchen</p>
+                    <h3 class="text-3xl font-serif mb-3 group-hover:text-brand-accent transition-colors">Decanting 101:
+                        A Guide to Clear Storage</h3>
+                    <p class="text-brand-taupe mb-4">Why transferring dry goods to glass canisters is the best thing you
+                        can do for your kitchen's aesthetic and freshness.</p>
+                    <span
+                        class="text-sm font-medium border-b border-brand-charcoal dark:border-brand-warmWhite pb-1">Read
+                        Article</span>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="overflow-hidden rounded-xl mb-6 aspect-[4/3]">
+                        <img src="https://images.pexels.com/photos/7947260/pexels-photo-7947260.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <p class="text-xs uppercase text-brand-accent tracking-widest mb-2">Wardrobe</p>
+                    <h3 class="text-3xl font-serif mb-3 group-hover:text-brand-accent transition-colors">The Vertical<br>Fold Method</h3>
+                    <p class="text-brand-taupe mb-4">Maximize drawer space and keep every item visible with this simple
+                        folding technique combined with our linen bins.</p>
+                    <span
+                        class="text-sm font-medium border-b border-brand-charcoal dark:border-brand-warmWhite pb-1">Read
+                        Article</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Quick Tips Section -->
+        <section class="max-w-7xl mx-auto px-4 mb-24">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-serif mb-4">Quick Tips</h2>
+                <p class="text-brand-taupe max-w-2xl mx-auto">Small changes that make a huge impact.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-brand-cream dark:bg-brand-charcoal/20 p-8 rounded-xl" data-aos="fade-up"
+                    data-aos-delay="0">
+                    <div class="text-brand-accent text-3xl mb-4"><i class='bx bx-check-square'></i></div>
+                    <h3 class="font-serif text-xl mb-3">Label Everything</h3>
+                    <p class="text-brand-taupe text-sm">Consistent labeling not only looks great but ensures everyone in
+                        the house knows where things belong.</p>
+                </div>
+                <div class="bg-brand-cream dark:bg-brand-charcoal/20 p-8 rounded-xl" data-aos="fade-up"
+                    data-aos-delay="100">
+                    <div class="text-brand-accent text-3xl mb-4"><i class='bx bx-layer'></i></div>
+                    <h3 class="font-serif text-xl mb-3">Use Vertical Space</h3>
+                    <p class="text-brand-taupe text-sm">Don't just think side-to-side. Stacking bins and adding shelf
+                        risers doubles your storage capacity.</p>
+                </div>
+                <div class="bg-brand-cream dark:bg-brand-charcoal/20 p-8 rounded-xl md:col-span-2 lg:col-span-1 md:justify-self-center md:w-[calc(50%-1rem)] lg:w-full lg:justify-self-auto" data-aos="fade-up"
+                    data-aos-delay="200">
+                    <div class="text-brand-accent text-3xl mb-4"><i class='bx bx-trash'></i></div>
+                    <h3 class="font-serif text-xl mb-3">The One-In-One-Out Rule</h3>
+                    <p class="text-brand-taupe text-sm">Keep clutter at bay by donating or discarding an old item every
+                        time you bring a new one into the home.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Inspiration -->
+        <section class="py-20 bg-brand-charcoal text-brand-warmWhite">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-12" data-aos="fade-up">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-serif mb-4">Join the Community</h2>
+                        <p class="text-brand-taupe max-w-2xl">Tag @boxed_home to be featured in our gallery.</p>
+                    </div>
+                    <a href="#"
+                        class="mt-4 md:mt-0 inline-block border border-brand-warmWhite text-brand-warmWhite px-6 py-2 rounded hover:bg-brand-warmWhite hover:text-brand-charcoal transition-colors uppercase tracking-wider text-sm">Follow
+                        Us</a>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="aspect-square rounded-lg overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-3xl">
+                            <i class='bx bxl-instagram'></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.pexels.com/photos/3741314/pexels-photo-3741314.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-3xl">
+                            <i class='bx bxl-instagram'></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-3xl">
+                            <i class='bx bxl-instagram'></i>
+                        </div>
+                    </div>
+                    <div class="aspect-square rounded-lg overflow-hidden group cursor-pointer relative">
+                        <img src="https://images.pexels.com/photos/6186826/pexels-photo-6186826.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div
+                            class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-3xl">
+                            <i class='bx bxl-instagram'></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-brand-warmWhite pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html"
+                        class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2 mb-6">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                    <p class="text-brand-taupe text-sm mb-6 pr-4">Premium storage and organization solutions for the
+                        modern home.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-instagram'></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-pinterest-alt'></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-tiktok'></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Shop</h4>
+                    <ul class="space-y-4 text-brand-taupe text-sm">
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Kitchen & Pantry</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Wardrobe & Closet</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Living Room</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Bathroom</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">All Collections</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Company</h4>
+                    <ul class="space-y-4 text-brand-taupe text-sm">
+                        <li><a href="about.html" class="hover:text-brand-accent transition-colors">Our Story</a></li>
+                        <li><a href="ideas.html" class="hover:text-brand-accent transition-colors">Journal & Ideas</a>
+                        </li>
+                        <li><a href="contact.html" class="hover:text-brand-accent transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Newsletter</h4>
+                    <p class="text-brand-taupe text-sm mb-4">Subscribe to receive inspiration, ideas, and 10% off your
+                        first order.</p>
+                    <form class="flex items-center gap-2">
+                        <input type="email" placeholder="Your email address"
+                            class="bg-transparent border-b border-brand-taupe/50 py-2 w-full focus:outline-none focus:border-brand-accent text-sm transition-colors">
+                        <button type="submit"
+                            class="bg-brand-accent text-white w-10 h-10 rounded flex items-center justify-center hover:bg-brand-charcoal dark:hover:bg-brand-warmWhite dark:hover:text-brand-charcoal transition-colors shrink-0">
+                            <i class='bx bx-right-arrow-alt text-xl'></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div
+                class="border-t border-brand-taupe/20 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-brand-taupe">
+                <p>&copy; 2026 BOXED. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 items-center">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Shipping & Returns</a>
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                        class="ml-4 w-8 h-8 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-colors"
+                        title="Back to top">
+                        <i class='bx bx-up-arrow-alt text-lg'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+    <script>
+        // Simple before/after slider logic
+        const slider = document.querySelector('.ba-slider');
+        const afterImg = document.querySelector('.ba-after');
+        const container = document.querySelector('.before-after-slider');
+        if (slider && afterImg && container) {
+            let isDown = false;
+            slider.addEventListener('mousedown', () => isDown = true);
+            window.addEventListener('mouseup', () => isDown = false);
+            container.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                const rect = container.getBoundingClientRect();
+                let x = e.clientX - rect.left;
+                let percent = Math.max(0, Math.min(x / rect.width * 100, 100));
+                slider.style.left = `${percent}%`;
+                afterImg.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+            });
+        }
+    </script>
+</body>
+
+</html>

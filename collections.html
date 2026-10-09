@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collections | Storage Boxes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { warmWhite: '#F9F8F6', cream: '#F3EFEA', sand: '#E6DCCF', beige: '#D9C8B6', taupe: '#9C8F82', sage: '#899B8E', charcoal: '#2A2C2A', darkBg: '#1A1C1A', accent: '#C5A880' }
+                    },
+                    fontFamily: { sans: ['Outfit', 'sans-serif'], serif: ['Playfair Display', 'serif'] }
+                }
+            }
+        }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body
+    class="bg-brand-warmWhite text-brand-charcoal dark:bg-brand-darkBg dark:text-brand-warmWhite transition-colors duration-300 font-sans antialiased overflow-x-hidden">
+
+    <!-- Header (Same as index.html) -->
+    <!-- Header -->
+    <header id="main-header"
+        class="fixed w-full top-0 z-50 transition-all duration-300 bg-brand-warmWhite/80 dark:bg-brand-darkBg/80 backdrop-blur-md border-b border-brand-sand/30 dark:border-brand-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex lg:space-x-4 xl:space-x-8">
+                    <a href="index.html"
+                        class="nav-link active relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Home</a>
+                    <a href="products.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Products</a>
+                    <a href="collections.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Collections</a>
+                    <a href="ideas.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Ideas</a>
+                    <a href="about.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">About</a>
+                    <a href="dashboard.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Dashboard</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden lg:flex items-center lg:space-x-3 xl:space-x-5">
+                    <a href="dashboard.html" class="text-xl hover:text-brand-accent transition-colors"><i
+                            class='bx bx-user'></i></a>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-heart'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                    </button>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-shopping-bag'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <div class="h-5 w-px bg-brand-sand dark:bg-brand-charcoal mx-1 xl:mx-2"></div>
+                    <button id="theme-toggle" class="text-xl hover:text-brand-accent transition-colors">
+                        <i class='bx bx-moon'></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="text-2xl text-brand-charcoal dark:text-brand-warmWhite focus:outline-none">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-brand-warmWhite dark:bg-brand-darkBg absolute w-full border-b border-brand-sand/30 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Home</a>
+                <a href="products.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Products</a>
+                <a href="collections.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Collections</a>
+                <a href="ideas.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Ideas</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">About</a>
+                <a href="dashboard.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Dashboard</a>
+                <div class="border-t border-brand-sand/50 pt-4 flex space-x-6 px-3">
+                    <a href="dashboard.html" class="text-xl"><i class='bx bx-user'></i></a>
+                    <button class="text-xl"><i class='bx bx-heart'></i></button>
+                    <button class="text-xl"><i class='bx bx-shopping-bag'></i></button>
+                    <button id="theme-toggle-mobile" class="text-xl"><i class='bx bx-moon'></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <!-- Hero -->
+        <section
+            class="py-24 text-center bg-brand-cream dark:bg-brand-charcoal/20 border-b border-brand-sand/30 dark:border-brand-charcoal">
+            <div class="max-w-3xl mx-auto px-4" data-aos="fade-up">
+                <p class="uppercase tracking-widest text-sm text-brand-accent font-semibold mb-4">Curated Selections</p>
+                <h1 class="text-5xl md:text-6xl font-serif mb-6">Our Collections</h1>
+                <p class="text-lg text-brand-taupe dark:text-brand-sand">Harmonious organization systems designed
+                    specifically for each room in your home.</p>
+            </div>
+        </section>
+
+        <!-- Kitchen Collection (Split Layout) -->
+        <section id="kitchen" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="w-full lg:w-1/2" data-aos="fade-right">
+                    <div class="relative rounded-2xl overflow-hidden aspect-square">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop"
+                            class="w-full h-full object-cover" alt="Kitchen Collection">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex flex-col justify-end p-8 text-white">
+                            <h2 class="text-4xl font-serif mb-2">The Kitchen Set</h2>
+                            <p class="text-white/80 max-w-md">Master your pantry and counters with airtight glass,
+                                natural bamboo, and minimalist styling.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2" data-aos="fade-left">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <a href="products.html" class="group relative rounded-xl overflow-hidden aspect-square">
+                            <img src="https://images.pexels.com/photos/7515855/pexels-photo-7515855.png"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute bottom-4 left-4 bg-white/90 text-black px-3 py-1 rounded text-sm font-medium">
+                                Modular Glass</div>
+                        </a>
+                        <a href="products.html"
+                            class="group relative rounded-xl overflow-hidden aspect-[4/5] sm:translate-y-12">
+                            <img src="https://images.pexels.com/photos/2039570/pexels-photo-2039570.jpeg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute bottom-4 left-4 bg-white/90 text-black px-3 py-1 rounded text-sm font-medium">
+                                Spice Jars</div>
+                        </a>
+                        <a href="products.html" class="group relative rounded-xl overflow-hidden aspect-square">
+                            <img src="https://images.pexels.com/photos/29268308/pexels-photo-29268308.jpeg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div
+                                class="absolute bottom-4 left-4 bg-white/90 text-black px-3 py-1 rounded text-sm font-medium">
+                                Wire Baskets</div>
+                        </a>
+                    </div>
+                    <div class="mt-16">
+                        <a href="products.html"
+                            class="flex items-center gap-2 hover:text-brand-accent transition-colors font-medium">Shop
+                            Kitchen Collection <i class='bx bx-right-arrow-alt text-xl'></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wardrobe Collection (Full Width Editorial) -->
+        <section id="wardrobe" class="py-24 bg-brand-charcoal text-brand-warmWhite">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-serif mb-4">Wardrobe Sanctuary</h2>
+                    <p class="text-brand-taupe max-w-2xl mx-auto">Soft cotton, durable canvas, and structural felt to
+                        protect and organize your garments.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="200">
+                    <a href="products.html" class="group relative aspect-[3/4] rounded-xl overflow-hidden">
+                        <img src="https://images.pexels.com/photos/7512845/pexels-photo-7512845.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none">
+                        </div>
+                        <div class="absolute bottom-6 left-6 z-10 text-white">
+                            <h3 class="text-2xl font-serif mb-1">Foldable Bins</h3>
+                        </div>
+                    </a>
+                    <a href="products.html"
+                        class="group relative aspect-[3/4] rounded-xl overflow-hidden md:-translate-y-8">
+                        <img src="https://images.pexels.com/photos/4992469/pexels-photo-4992469.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none">
+                        </div>
+                        <div class="absolute bottom-6 left-6 z-10 text-white">
+                            <h3 class="text-2xl font-serif mb-1">Hanging Organizers</h3>
+                        </div>
+                    </a>
+                    <a href="products.html" class="group relative aspect-[3/4] rounded-xl overflow-hidden">
+                        <img src="https://images.pexels.com/photos/15477636/pexels-photo-15477636.jpeg"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 opacity-80 group-hover:opacity-100">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none">
+                        </div>
+                        <div class="absolute bottom-6 left-6 z-10 text-white">
+                            <h3 class="text-2xl font-serif mb-1">Underbed Storage</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="text-center mt-12">
+                    <a href="products.html"
+                        class="inline-block px-8 py-4 bg-white text-brand-charcoal font-medium text-sm uppercase tracking-wider rounded hover:bg-brand-accent hover:text-white transition-colors shadow-lg">Shop
+                        Wardrobe</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bathroom Collection (Asymmetric) -->
+        <section id="bathroom" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-16">
+                <div class="w-full lg:w-5/12" data-aos="fade-left">
+                    <h2 class="text-4xl md:text-5xl font-serif mb-6">The Bathroom Edit</h2>
+                    <p class="text-brand-taupe dark:text-brand-sand mb-8 leading-relaxed">Turn your bathroom into a
+                        spa-like retreat. Our moisture-resistant acrylics, bamboo trays, and frosted glass containers
+                        keep essentials visible but elegantly contained.</p>
+                    <a href="products.html" class="inline-block px-8 py-4 bg-brand-charcoal text-brand-warmWhite font-medium text-sm uppercase tracking-wider rounded hover:bg-brand-accent transition-colors shadow-lg">Explore Collection</a>
+                </div>
+                <div class="w-full lg:w-7/12 relative h-[600px]" data-aos="fade-right">
+                    <img src="https://images.pexels.com/photos/7795867/pexels-photo-7795867.jpeg"
+                        class="absolute right-0 top-0 w-2/3 h-4/5 object-cover rounded-2xl shadow-xl z-10">
+                    <img src="https://images.pexels.com/photos/32420129/pexels-photo-32420129.jpeg"
+                        class="absolute left-0 bottom-0 w-1/2 h-2/3 object-cover rounded-2xl shadow-xl z-20 border-4 border-brand-warmWhite dark:border-brand-darkBg">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-brand-warmWhite pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html"
+                        class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2 mb-6">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                    <p class="text-brand-taupe text-sm mb-6 pr-4">Premium storage and organization solutions for the
+                        modern home.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-instagram'></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-pinterest-alt'></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-tiktok'></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Shop</h4>
+                    <ul class="space-y-4 text-brand-taupe text-sm">
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Kitchen & Pantry</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Wardrobe & Closet</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Living Room</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Bathroom</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">All Collections</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Company</h4>
+                    <ul class="space-y-4 text-brand-taupe text-sm">
+                        <li><a href="about.html" class="hover:text-brand-accent transition-colors">Our Story</a></li>
+                        <li><a href="ideas.html" class="hover:text-brand-accent transition-colors">Journal & Ideas</a>
+                        </li>
+                        <li><a href="contact.html" class="hover:text-brand-accent transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Newsletter</h4>
+                    <p class="text-brand-taupe text-sm mb-4">Subscribe to receive inspiration, ideas, and 10% off your
+                        first order.</p>
+                    <form class="flex items-center gap-2">
+                        <input type="email" placeholder="Your email address"
+                            class="bg-transparent border-b border-brand-taupe/50 py-2 w-full focus:outline-none focus:border-brand-accent text-sm transition-colors">
+                        <button type="submit"
+                            class="bg-brand-accent text-white w-10 h-10 rounded flex items-center justify-center hover:bg-brand-charcoal dark:hover:bg-brand-warmWhite dark:hover:text-brand-charcoal transition-colors shrink-0">
+                            <i class='bx bx-right-arrow-alt text-xl'></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div
+                class="border-t border-brand-taupe/20 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-brand-taupe">
+                <p>&copy; 2026 BOXED. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 items-center">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Shipping & Returns</a>
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                        class="ml-4 w-8 h-8 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-colors"
+                        title="Back to top">
+                        <i class='bx bx-up-arrow-alt text-lg'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

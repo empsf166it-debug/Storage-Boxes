@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modular Glass Canister | Storage Boxes</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            warmWhite: '#F9F8F6',
+                            cream: '#F3EFEA',
+                            sand: '#E6DCCF',
+                            beige: '#D9C8B6',
+                            taupe: '#9C8F82',
+                            sage: '#899B8E',
+                            charcoal: '#2A2C2A',
+                            darkBg: '#1A1C1A',
+                            accent: '#C5A880'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="bg-brand-warmWhite text-brand-charcoal dark:bg-brand-darkBg dark:text-brand-warmWhite transition-colors duration-300 font-sans antialiased overflow-x-hidden">
+
+    <!-- Header (Same as index.html) -->
+    <!-- Header -->
+    <header id="main-header"
+        class="fixed w-full top-0 z-50 transition-all duration-300 bg-brand-warmWhite/80 dark:bg-brand-darkBg/80 backdrop-blur-md border-b border-brand-sand/30 dark:border-brand-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex lg:space-x-4 xl:space-x-8">
+                    <a href="index.html"
+                        class="nav-link active relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Home</a>
+                    <a href="products.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Products</a>
+                    <a href="collections.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Collections</a>
+                    <a href="ideas.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Ideas</a>
+                    <a href="about.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">About</a>
+                    <a href="dashboard.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Dashboard</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden lg:flex items-center lg:space-x-3 xl:space-x-5">
+                    <a href="dashboard.html" class="text-xl hover:text-brand-accent transition-colors"><i
+                            class='bx bx-user'></i></a>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-heart'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                    </button>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-shopping-bag'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <div class="h-5 w-px bg-brand-sand dark:bg-brand-charcoal mx-1 xl:mx-2"></div>
+                    <button id="theme-toggle" class="text-xl hover:text-brand-accent transition-colors">
+                        <i class='bx bx-moon'></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="text-2xl text-brand-charcoal dark:text-brand-warmWhite focus:outline-none">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-brand-warmWhite dark:bg-brand-darkBg absolute w-full border-b border-brand-sand/30 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Home</a>
+                <a href="products.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Products</a>
+                <a href="collections.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Collections</a>
+                <a href="ideas.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Ideas</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">About</a>
+                <a href="dashboard.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Dashboard</a>
+                <div class="border-t border-brand-sand/50 pt-4 flex space-x-6 px-3">
+                    <a href="dashboard.html" class="text-xl"><i class='bx bx-user'></i></a>
+                    <button class="text-xl"><i class='bx bx-heart'></i></button>
+                    <button class="text-xl"><i class='bx bx-shopping-bag'></i></button>
+                    <button id="theme-toggle-mobile" class="text-xl"><i class='bx bx-moon'></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-20">
+        
+        <!-- Breadcrumb -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8" data-aos="fade-in">
+            <nav class="flex text-sm text-brand-taupe">
+                <ol class="flex items-center space-x-2">
+                    <li><a href="index.html" class="hover:text-brand-accent transition-colors">Home</a></li>
+                    <li><i class='bx bx-chevron-right text-xs'></i></li>
+                    <li><a href="products.html" class="hover:text-brand-accent transition-colors">Products</a></li>
+                    <li><i class='bx bx-chevron-right text-xs'></i></li>
+                    <li><a href="collections.html#kitchen" class="hover:text-brand-accent transition-colors">Kitchen</a></li>
+                    <li><i class='bx bx-chevron-right text-xs'></i></li>
+                    <li class="text-brand-charcoal dark:text-brand-warmWhite font-medium">Modular Glass Canister</li>
+                </ol>
+            </nav>
+        </div>
+
+        <!-- Product Main Area -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-20">
+                
+                <!-- Image Gallery -->
+                <div class="w-full lg:w-1/2 flex flex-col-reverse md:flex-row gap-4" data-aos="fade-right">
+                    <!-- Thumbnails -->
+                    <div class="flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto pb-2 md:pb-0 scrollbar-hide md:w-20 lg:w-24 shrink-0">
+                        <button class="w-20 h-24 md:w-full md:h-32 shrink-0 rounded-lg overflow-hidden border-2 border-brand-accent">
+                            <img src="https://images.unsplash.com/photo-1595514686259-7f61765c3cc8?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover" alt="Thumb 1">
+                        </button>
+                        <button class="w-20 h-24 md:w-full md:h-32 shrink-0 rounded-lg overflow-hidden border-2 border-transparent hover:border-brand-sand transition-colors">
+                            <img src="https://images.unsplash.com/photo-1610440042657-612c34d95e9f?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover" alt="Thumb 2">
+                        </button>
+                        <button class="w-20 h-24 md:w-full md:h-32 shrink-0 rounded-lg overflow-hidden border-2 border-transparent hover:border-brand-sand transition-colors">
+                            <img src="https://images.unsplash.com/photo-1582582494705-f8ce0b0c24f0?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover" alt="Thumb 3">
+                        </button>
+                    </div>
+                    
+                    <!-- Main Image with Zoom effect setup -->
+                    <div class="relative w-full rounded-2xl overflow-hidden bg-brand-cream dark:bg-brand-charcoal aspect-[4/5] md:aspect-auto group cursor-zoom-in">
+                        <img src="https://images.unsplash.com/photo-1595514686259-7f61765c3cc8?q=80&w=1974&auto=format&fit=crop" alt="Modular Glass Canister" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 left-4 bg-white/90 dark:bg-black/90 backdrop-blur px-3 py-1.5 text-xs uppercase tracking-wider font-semibold rounded shadow-sm">Bestseller</div>
+                        <button class="absolute top-4 right-4 w-10 h-10 bg-white/90 dark:bg-black/90 backdrop-blur rounded-full flex items-center justify-center hover:text-brand-accent transition-colors shadow-sm text-lg">
+                            <i class='bx bx-heart'></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="w-full lg:w-1/2 flex flex-col justify-center py-6" data-aos="fade-left">
+                    <p class="text-xs uppercase tracking-widest text-brand-taupe mb-2">Kitchen Collection</p>
+                    <h1 class="text-4xl md:text-5xl font-serif mb-4">Modular Glass Canister</h1>
+                    
+                    <div class="flex items-center gap-4 mb-6">
+                        <span class="text-2xl font-semibold text-brand-accent">$32.00</span>
+                        <div class="flex items-center text-sm text-yellow-500">
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star'></i>
+                            <i class='bx bxs-star-half'></i>
+                            <span class="text-brand-taupe ml-2 hover:text-brand-accent cursor-pointer underline transition-colors">(128 Reviews)</span>
+                        </div>
+                    </div>
+                    
+                    <p class="text-brand-taupe dark:text-brand-sand leading-relaxed mb-8">
+                        Elevate your pantry organization with our airtight modular glass canisters. Crafted from high-borosilicate glass with a natural bamboo lid and silicone seal, keeping your dry goods fresher for longer while offering a beautiful, stackable aesthetic.
+                    </p>
+
+                    <!-- Size / Capacity Options -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium">Size (Capacity)</span>
+                            <span class="text-xs text-brand-taupe underline cursor-pointer hover:text-brand-accent">Size Guide</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="flex-1 py-3 border border-brand-charcoal dark:border-brand-warmWhite rounded-md font-medium text-sm transition-colors">Small (500ml)</button>
+                            <button class="flex-1 py-3 border border-brand-sand/50 text-brand-taupe rounded-md font-medium text-sm hover:border-brand-charcoal dark:hover:border-brand-warmWhite transition-colors">Medium (1L)</button>
+                            <button class="flex-1 py-3 border border-brand-sand/50 text-brand-taupe rounded-md font-medium text-sm hover:border-brand-charcoal dark:hover:border-brand-warmWhite transition-colors">Large (1.5L)</button>
+                        </div>
+                    </div>
+
+                    <!-- Quantity & Add to Cart -->
+                    <div class="flex gap-4 mb-10 mt-4">
+                        <div class="flex items-center border border-brand-sand/50 rounded-md bg-white dark:bg-transparent">
+                            <button class="w-12 h-12 flex items-center justify-center text-brand-taupe hover:text-brand-accent transition-colors"><i class='bx bx-minus'></i></button>
+                            <input type="text" value="1" class="w-10 text-center bg-transparent border-none focus:outline-none font-medium">
+                            <button class="w-12 h-12 flex items-center justify-center text-brand-taupe hover:text-brand-accent transition-colors"><i class='bx bx-plus'></i></button>
+                        </div>
+                        <button class="flex-1 btn-primary">
+                            Add to Cart — $32.00
+                        </button>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-sm text-brand-sage font-medium mb-8">
+                        <i class='bx bx-check-circle text-lg'></i> In stock, ready to ship
+                    </div>
+
+                    <!-- Accordions -->
+                    <div class="border-t border-brand-sand/30 dark:border-brand-charcoal">
+                        <!-- Details -->
+                        <div class="accordion-item active border-b border-brand-sand/30 dark:border-brand-charcoal py-4">
+                            <button class="w-full flex justify-between items-center text-left font-medium focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                                Product Details
+                                <i class='bx bx-chevron-down text-xl accordion-icon transition-transform duration-300'></i>
+                            </button>
+                            <div class="accordion-content mt-2 text-sm text-brand-taupe leading-relaxed">
+                                <ul class="list-disc pl-5 space-y-1">
+                                    <li>Material: High-borosilicate glass, Bamboo, Food-grade silicone</li>
+                                    <li>Modular and stackable design to maximize vertical space</li>
+                                    <li>Airtight seal preserves freshness and prevents moisture</li>
+                                    <li>Wide mouth for easy scooping and cleaning</li>
+                                    <li>BPA-free and non-toxic materials</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <!-- Dimensions -->
+                        <div class="accordion-item border-b border-brand-sand/30 dark:border-brand-charcoal py-4">
+                            <button class="w-full flex justify-between items-center text-left font-medium focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                                Dimensions & Care
+                                <i class='bx bx-chevron-down text-xl accordion-icon transition-transform duration-300'></i>
+                            </button>
+                            <div class="accordion-content mt-2 text-sm text-brand-taupe leading-relaxed">
+                                <p class="mb-2"><strong>Small (500ml):</strong> 10cm x 10cm x 11cm</p>
+                                <p class="mb-2"><strong>Medium (1L):</strong> 10cm x 10cm x 16cm</p>
+                                <p class="mb-4"><strong>Large (1.5L):</strong> 10cm x 10cm x 21cm</p>
+                                <p><strong>Care:</strong> Glass body is dishwasher safe. Hand wash bamboo lid and silicone ring. Ensure lid is completely dry before re-sealing.</p>
+                            </div>
+                        </div>
+
+                        <!-- Shipping -->
+                        <div class="accordion-item border-b border-brand-sand/30 dark:border-brand-charcoal py-4">
+                            <button class="w-full flex justify-between items-center text-left font-medium focus:outline-none" onclick="this.parentElement.classList.toggle('active')">
+                                Shipping & Returns
+                                <i class='bx bx-chevron-down text-xl accordion-icon transition-transform duration-300'></i>
+                            </button>
+                            <div class="accordion-content mt-2 text-sm text-brand-taupe leading-relaxed">
+                                <p>Free standard shipping on orders over $100.</p>
+                                <p>Standard delivery: 3-5 business days.</p>
+                                <p>Express delivery available at checkout.</p>
+                                <p class="mt-2">We accept returns within 30 days of delivery. Items must be in original condition with packaging intact.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- "See It Organized" Interactive Section -->
+        <section class="py-20 bg-brand-charcoal text-brand-warmWhite relative overflow-hidden" data-aos="fade-up">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-serif mb-4">See It Organized</h2>
+                    <p class="text-brand-taupe max-w-2xl mx-auto">Visualize how our modular canisters transform a cluttered pantry into an aesthetic masterpiece.</p>
+                </div>
+                
+                <div class="relative w-full rounded-2xl overflow-hidden aspect-[16/9] md:aspect-[21/9]">
+                    <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Organized Pantry">
+                    <div class="absolute inset-0 bg-black/30 hover:bg-black/10 transition-colors duration-700"></div>
+                    
+                    <!-- Hotspots -->
+                    <div class="absolute top-[40%] left-[30%] group">
+                        <div class="w-6 h-6 bg-brand-accent rounded-full flex items-center justify-center animate-pulse cursor-pointer shadow-lg border-2 border-white"></div>
+                        <div class="absolute top-8 left-1/2 -translate-x-1/2 bg-white text-black p-3 rounded shadow-xl w-48 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+                            <p class="font-medium text-sm">Large Canister</p>
+                            <p class="text-xs text-gray-500 mb-1">Perfect for pasta & cereal</p>
+                            <p class="text-brand-accent font-semibold text-sm">$38.00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute top-[60%] right-[40%] group">
+                        <div class="w-6 h-6 bg-brand-accent rounded-full flex items-center justify-center animate-pulse cursor-pointer shadow-lg border-2 border-white"></div>
+                        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white text-black p-3 rounded shadow-xl w-48 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+                            <p class="font-medium text-sm">Small Canister Set</p>
+                            <p class="text-xs text-gray-500 mb-1">Ideal for nuts & seeds</p>
+                            <p class="text-brand-accent font-semibold text-sm">$60.00 (Set of 2)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Products -->
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-end mb-12" data-aos="fade-up">
+                    <h2 class="text-3xl font-serif">Complete the Look</h2>
+                    <div class="flex gap-2">
+                        <button class="w-10 h-10 rounded-full border border-brand-charcoal/20 flex items-center justify-center hover:bg-brand-charcoal hover:text-white transition-colors"><i class='bx bx-left-arrow-alt'></i></button>
+                        <button class="w-10 h-10 rounded-full border border-brand-charcoal/20 flex items-center justify-center hover:bg-brand-charcoal hover:text-white transition-colors"><i class='bx bx-right-arrow-alt'></i></button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Related 1 -->
+                    <div class="product-card group" data-aos="fade-up" data-aos-delay="0">
+                        <div class="relative rounded-xl overflow-hidden bg-brand-cream dark:bg-brand-charcoal mb-4 aspect-[4/5]">
+                            <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?q=80&w=1974&auto=format&fit=crop" alt="Tray" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-base mb-1"><a href="#" class="hover:text-brand-accent transition-colors">Bamboo Organizer Tray</a></h3>
+                            <p class="text-brand-accent font-semibold">$28.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Related 2 -->
+                    <div class="product-card group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative rounded-xl overflow-hidden bg-brand-cream dark:bg-brand-charcoal mb-4 aspect-[4/5]">
+                            <img src="https://images.unsplash.com/photo-1629864757303-34e8f3957db1?q=80&w=1974&auto=format&fit=crop" alt="Organizer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-base mb-1"><a href="#" class="hover:text-brand-accent transition-colors">Clear Acrylic Organizer</a></h3>
+                            <p class="text-brand-accent font-semibold">$38.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Related 3 -->
+                    <div class="product-card group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative rounded-xl overflow-hidden bg-brand-cream dark:bg-brand-charcoal mb-4 aspect-[4/5]">
+                            <img src="https://images.unsplash.com/photo-1584472282996-26156e727e16?q=80&w=2069&auto=format&fit=crop" alt="Labels" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-base mb-1"><a href="#" class="hover:text-brand-accent transition-colors">Minimalist Pantry Labels</a></h3>
+                            <p class="text-brand-accent font-semibold">$15.00</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Related 4 -->
+                    <div class="product-card group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative rounded-xl overflow-hidden bg-brand-cream dark:bg-brand-charcoal mb-4 aspect-[4/5]">
+                            <img src="https://images.unsplash.com/photo-1594895697330-9b62fcecc7b2?q=80&w=1964&auto=format&fit=crop" alt="Basket" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-base mb-1"><a href="#" class="hover:text-brand-accent transition-colors">Woven Rattan Basket</a></h3>
+                            <p class="text-brand-accent font-semibold">$65.00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (Same as index.html) -->
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-brand-warmWhite pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html" class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2 mb-6">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                    <p class="text-brand-taupe text-sm mb-6 pr-4">Premium storage and organization solutions for the modern home.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i class='bx bxl-pinterest-alt'></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i class='bx bxl-tiktok'></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Shop</h4>
+                    <ul class="space-y-4 text-brand-taupe text-sm">
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Kitchen & Pantry</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Wardrobe & Closet</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Living Room</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Bathroom</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">All Collections</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Company</h4>
+                    <ul class="space-y-4 text-brand-taupe text-sm">
+                        <li><a href="about.html" class="hover:text-brand-accent transition-colors">Our Story</a></li>
+                        <li><a href="ideas.html" class="hover:text-brand-accent transition-colors">Journal & Ideas</a></li>
+                        <li><a href="contact.html" class="hover:text-brand-accent transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Newsletter</h4>
+                    <p class="text-brand-taupe text-sm mb-4">Subscribe to receive inspiration, ideas, and 10% off your first order.</p>
+                    <form class="flex items-center gap-2">
+                        <input type="email" placeholder="Your email address" class="bg-transparent border-b border-brand-taupe/50 py-2 w-full focus:outline-none focus:border-brand-accent text-sm transition-colors">
+                        <button type="submit" class="bg-brand-accent text-white w-10 h-10 rounded flex items-center justify-center hover:bg-brand-charcoal dark:hover:bg-brand-warmWhite dark:hover:text-brand-charcoal transition-colors shrink-0">
+                            <i class='bx bx-right-arrow-alt text-xl'></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-brand-taupe/20 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-brand-taupe">
+                <p>&copy; 2026 BOXED. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 items-center">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Shipping & Returns</a>
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="ml-4 w-8 h-8 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-colors" title="Back to top">
+                        <i class='bx bx-up-arrow-alt text-lg'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

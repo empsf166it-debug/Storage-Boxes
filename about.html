@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Storage Boxes</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { warmWhite: '#F9F8F6', cream: '#F3EFEA', sand: '#E6DCCF', taupe: '#9C8F82', charcoal: '#2A2C2A', darkBg: '#1A1C1A', accent: '#C5A880' } }, fontFamily: { sans: ['Outfit', 'sans-serif'], serif: ['Playfair Display', 'serif'] } } } }
+    </script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body
+    class="bg-brand-warmWhite text-brand-charcoal dark:bg-brand-darkBg dark:text-brand-warmWhite font-sans antialiased overflow-x-hidden">
+
+    <!-- Header -->
+    <header id="main-header"
+        class="fixed w-full top-0 z-50 transition-all duration-300 bg-brand-warmWhite/80 dark:bg-brand-darkBg/80 backdrop-blur-md border-b border-brand-sand/30 dark:border-brand-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex lg:space-x-4 xl:space-x-8">
+                    <a href="index.html"
+                        class="nav-link active relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Home</a>
+                    <a href="products.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Products</a>
+                    <a href="collections.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Collections</a>
+                    <a href="ideas.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Ideas</a>
+                    <a href="about.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">About</a>
+                    <a href="dashboard.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Dashboard</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden lg:flex items-center lg:space-x-3 xl:space-x-5">
+                    <a href="dashboard.html" class="text-xl hover:text-brand-accent transition-colors"><i
+                            class='bx bx-user'></i></a>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-heart'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                    </button>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-shopping-bag'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <div class="h-5 w-px bg-brand-sand dark:bg-brand-charcoal mx-1 xl:mx-2"></div>
+                    <button id="theme-toggle" class="text-xl hover:text-brand-accent transition-colors">
+                        <i class='bx bx-moon'></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="text-2xl text-brand-charcoal dark:text-brand-warmWhite focus:outline-none">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-brand-warmWhite dark:bg-brand-darkBg absolute w-full border-b border-brand-sand/30 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Home</a>
+                <a href="products.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Products</a>
+                <a href="collections.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Collections</a>
+                <a href="ideas.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Ideas</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">About</a>
+                <a href="dashboard.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Dashboard</a>
+                <div class="border-t border-brand-sand/50 pt-4 flex space-x-6 px-3">
+                    <a href="dashboard.html" class="text-xl"><i class='bx bx-user'></i></a>
+                    <button class="text-xl"><i class='bx bx-heart'></i></button>
+                    <button class="text-xl"><i class='bx bx-shopping-bag'></i></button>
+                    <button id="theme-toggle-mobile" class="text-xl"><i class='bx bx-moon'></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-20">
+        <!-- Hero Story -->
+        <section class="max-w-7xl mx-auto px-4 lg:px-8 mb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div data-aos="fade-right">
+                    <h1 class="text-5xl md:text-6xl font-serif mb-6 leading-tight">Order is beautiful.</h1>
+                    <p class="text-lg text-brand-taupe mb-6 leading-relaxed">Founded in 2026, BOXED was born from a
+                        simple belief: that a well-organized home leads to a clearer mind. We design premium storage
+                        solutions that you don't want to hide away in closets.</p>
+                    <p class="text-lg text-brand-taupe leading-relaxed">Our pieces are crafted using sustainable
+                        materials like fast-growing bamboo, recyclable high-borosilicate glass, and organic cotton,
+                        ensuring durability without compromising the planet.</p>
+                </div>
+                <div class="relative h-[600px] rounded-2xl overflow-hidden" data-aos="fade-left">
+                    <img src="https://images.pexels.com/photos/6032416/pexels-photo-6032416.jpeg"
+                        class="absolute inset-0 w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- Values -->
+        <section class="bg-brand-charcoal text-brand-warmWhite py-24">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <h2 class="text-3xl font-serif mb-16" data-aos="fade-up">Our Design Philosophy</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div data-aos="fade-up" data-aos-delay="0">
+                        <i class='bx bx-leaf text-4xl text-brand-accent mb-4'></i>
+                        <h3 class="text-xl font-medium mb-3">Sustainable Materials</h3>
+                        <p class="text-brand-taupe">We prioritize eco-friendly, long-lasting materials over single-use
+                            plastics.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <i class='bx bx-shape-square text-4xl text-brand-accent mb-4'></i>
+                        <h3 class="text-xl font-medium mb-3">Modular Design</h3>
+                        <p class="text-brand-taupe">Systems that stack, connect, and grow with your changing needs.</p>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <i class='bx bx-palette text-4xl text-brand-accent mb-4'></i>
+                        <h3 class="text-xl font-medium mb-3">Visual Harmony</h3>
+                        <p class="text-brand-taupe">Muted palettes and organic textures that blend seamlessly into your
+                            interior decor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Behind the Design -->
+        <section class="max-w-7xl mx-auto px-4 lg:px-8 py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1 relative h-[500px] rounded-2xl overflow-hidden" data-aos="fade-right">
+                    <img src="https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg" alt="Craftsmanship"
+                        class="absolute inset-0 w-full h-full object-cover">
+                </div>
+                <div class="order-1 lg:order-2" data-aos="fade-left">
+                    <span
+                        class="uppercase tracking-widest text-sm font-semibold text-brand-accent mb-4 block">Craftsmanship</span>
+                    <h2 class="text-4xl md:text-5xl font-serif mb-6 leading-tight">Meticulous in every detail.</h2>
+                    <p class="text-lg text-brand-taupe mb-6 leading-relaxed">Every BOXED product goes through a rigorous
+                        design and testing process. We partner directly with master craftspeople who share our obsession
+                        with quality and ethical manufacturing.</p>
+                    <p class="text-lg text-brand-taupe leading-relaxed">By cutting out the middlemen, we bring you
+                        exceptional storage pieces that look beautiful and are built to last a lifetime.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Mission CTA -->
+        <section class="bg-brand-cream dark:bg-brand-charcoal/20 py-24">
+            <div class="max-w-4xl mx-auto px-4 text-center" data-aos="zoom-in">
+                <h2 class="text-4xl md:text-5xl font-serif mb-6">Start your organizational journey.</h2>
+                <p class="text-lg text-brand-taupe mb-10 leading-relaxed">Whether you are tackling a chaotic kitchen
+                    pantry or reimagining your entire wardrobe, we are here to provide the tools and inspiration you
+                    need to create a space you love.</p>
+                <a href="products.html"
+                    class="inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-medium rounded-full text-white bg-brand-charcoal hover:bg-brand-accent dark:bg-brand-warmWhite dark:text-brand-charcoal dark:hover:bg-brand-accent dark:hover:text-white transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-0.5">
+                    Shop Collections
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-charcoal text-brand-warmWhite pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-1">
+                    <a href="index.html"
+                        class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2 mb-6">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                    <p class="text-brand-taupe text-sm mb-6 pr-4">Premium storage and organization solutions for the
+                        modern home.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-instagram'></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-pinterest-alt'></i></a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent transition-colors"><i
+                                class='bx bxl-tiktok'></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Shop</h4>
+                    <ul class="space-y-4 text-brand-taupe text-sm">
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Kitchen & Pantry</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Wardrobe & Closet</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Living Room</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Bathroom</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">All Collections</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Company</h4>
+                    <ul class="space-y-4 text-brand-taupe text-sm">
+                        <li><a href="about.html" class="hover:text-brand-accent transition-colors">Our Story</a></li>
+                        <li><a href="ideas.html" class="hover:text-brand-accent transition-colors">Journal & Ideas</a>
+                        </li>
+                        <li><a href="contact.html" class="hover:text-brand-accent transition-colors">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-brand-accent transition-colors">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-6 uppercase tracking-wider text-sm">Newsletter</h4>
+                    <p class="text-brand-taupe text-sm mb-4">Subscribe to receive inspiration, ideas, and 10% off your
+                        first order.</p>
+                    <form class="flex items-center gap-2">
+                        <input type="email" placeholder="Your email address"
+                            class="bg-transparent border-b border-brand-taupe/50 py-2 w-full focus:outline-none focus:border-brand-accent text-sm transition-colors">
+                        <button type="submit"
+                            class="bg-brand-accent text-white w-10 h-10 rounded flex items-center justify-center hover:bg-brand-charcoal dark:hover:bg-brand-warmWhite dark:hover:text-brand-charcoal transition-colors shrink-0">
+                            <i class='bx bx-right-arrow-alt text-xl'></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div
+                class="border-t border-brand-taupe/20 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-brand-taupe">
+                <p>&copy; 2026 BOXED. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 items-center">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Shipping & Returns</a>
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                        class="ml-4 w-8 h-8 rounded-full border border-brand-taupe/30 flex items-center justify-center hover:bg-brand-accent hover:border-brand-accent hover:text-white transition-colors"
+                        title="Back to top">
+                        <i class='bx bx-up-arrow-alt text-lg'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

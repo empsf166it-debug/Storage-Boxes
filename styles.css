@@ -1,0 +1,74 @@
+/* Custom Styles for Boxed Web App */
+
+@layer utilities {
+    .glass-panel {
+        @apply bg-white/70 dark:bg-black/40 backdrop-blur-lg border border-white/20 dark:border-white/10;
+    }
+    
+    .btn-primary {
+        @apply inline-flex items-center justify-center px-8 py-3.5 border border-transparent text-base font-medium rounded-full text-white bg-brand-charcoal hover:bg-brand-accent dark:bg-brand-warmWhite dark:text-brand-charcoal dark:hover:bg-brand-accent dark:hover:text-white transition-all duration-300 shadow-sm hover:shadow-md transform hover:-translate-y-0.5;
+    }
+    
+    .btn-secondary {
+        @apply inline-flex items-center justify-center px-8 py-3.5 border border-brand-charcoal/20 dark:border-brand-warmWhite/20 text-base font-medium rounded-full text-brand-charcoal dark:text-brand-warmWhite hover:border-brand-accent hover:text-brand-accent dark:hover:border-brand-accent dark:hover:text-brand-accent transition-all duration-300 bg-transparent;
+    }
+}
+
+/* Nav Link Hover Effect */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: theme('colors.brand.accent');
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: theme('colors.brand.warmWhite');
+}
+.dark ::-webkit-scrollbar-track {
+    background: theme('colors.brand.darkBg');
+}
+::-webkit-scrollbar-thumb {
+    background: theme('colors.brand.sand');
+    border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+    background: theme('colors.brand.charcoal');
+}
+::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.brand.taupe');
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+.floating-element {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Smooth Image Loading */
+img {
+    transition: filter 0.5s ease-in-out;
+}
+img[loading] {
+    filter: blur(5px);
+}
+img.loaded {
+    filter: blur(0);
+}

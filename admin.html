@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Storage Boxes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class', theme: { extend: { colors: { brand: { warmWhite: '#F9F8F6', cream: '#F3EFEA', sand: '#E6DCCF', taupe: '#9C8F82', charcoal: '#2A2C2A', darkBg: '#1A1C1A', accent: '#C5A880' } }, fontFamily: { sans: ['Outfit', 'sans-serif'], serif: ['Playfair Display', 'serif'] } } } }
+    </script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Simple Chart.js implementation via CDN for Admin Analytics -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body class="bg-brand-warmWhite text-brand-charcoal dark:bg-brand-darkBg dark:text-brand-warmWhite font-sans antialiased flex h-screen overflow-hidden">
+    
+    <!-- Admin Sidebar -->
+    <aside class="w-64 bg-[#111111] text-gray-300 flex flex-col hidden md:flex shrink-0">
+        <div class="h-20 flex items-center px-8 border-b border-gray-800 text-white">
+            <span class="font-serif text-xl font-semibold flex items-center gap-2"><i class='bx bx-box text-brand-accent'></i>ADMIN.</span>
+        </div>
+        <div class="p-6 flex-1 overflow-y-auto custom-scrollbar">
+            <p class="text-xs uppercase tracking-widest text-gray-500 font-medium mb-4">Main Menu</p>
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 bg-brand-accent/20 text-brand-accent rounded-md text-sm font-medium"><i class='bx bxs-dashboard text-lg'></i> Overview</a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors"><i class='bx bx-cart text-lg'></i> Orders</a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors"><i class='bx bx-box text-lg'></i> Products</a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors"><i class='bx bx-group text-lg'></i> Customers</a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors"><i class='bx bx-bar-chart-alt-2 text-lg'></i> Analytics</a>
+            </nav>
+            <p class="text-xs uppercase tracking-widest text-gray-500 font-medium mb-4 mt-8">Content</p>
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors"><i class='bx bx-collection text-lg'></i> Collections</a>
+                <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors"><i class='bx bx-bulb text-lg'></i> Ideas (Blog)</a>
+            </nav>
+        </div>
+        <div class="p-6 border-t border-gray-800">
+            <a href="index.html" class="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors"><i class='bx bx-store text-lg'></i> Storefront</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden bg-gray-50 dark:bg-[#0a0a0a]">
+        <!-- Header -->
+    <header id="main-header"
+        class="fixed w-full top-0 z-50 transition-all duration-300 bg-brand-warmWhite/80 dark:bg-brand-darkBg/80 backdrop-blur-md border-b border-brand-sand/30 dark:border-brand-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html"
+                        class="font-serif text-2xl font-semibold tracking-wide flex items-center gap-2">
+                        <i class='bx bx-box text-brand-accent'></i>
+                        BOXED<span class="text-brand-taupe">.</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Nav -->
+                <nav class="hidden lg:flex lg:space-x-4 xl:space-x-8">
+                    <a href="index.html"
+                        class="nav-link active relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Home</a>
+                    <a href="products.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Products</a>
+                    <a href="collections.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Collections</a>
+                    <a href="ideas.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Ideas</a>
+                    <a href="about.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">About</a>
+                    <a href="dashboard.html"
+                        class="nav-link relative text-sm font-medium hover:text-brand-accent transition-colors py-2">Dashboard</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden lg:flex items-center lg:space-x-3 xl:space-x-5">
+                    <a href="dashboard.html" class="text-xl hover:text-brand-accent transition-colors"><i
+                            class='bx bx-user'></i></a>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-heart'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+                    </button>
+                    <button class="text-xl hover:text-brand-accent transition-colors relative">
+                        <i class='bx bx-shopping-bag'></i>
+                        <span
+                            class="absolute -top-1 -right-1 bg-brand-accent text-white text-[10px] w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                    </button>
+                    <div class="h-5 w-px bg-brand-sand dark:bg-brand-charcoal mx-1 xl:mx-2"></div>
+                    <button id="theme-toggle" class="text-xl hover:text-brand-accent transition-colors">
+                        <i class='bx bx-moon'></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn"
+                        class="text-2xl text-brand-charcoal dark:text-brand-warmWhite focus:outline-none">
+                        <i class='bx bx-menu'></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden lg:hidden bg-brand-warmWhite dark:bg-brand-darkBg absolute w-full border-b border-brand-sand/30 shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="index.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Home</a>
+                <a href="products.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Products</a>
+                <a href="collections.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Collections</a>
+                <a href="ideas.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Ideas</a>
+                <a href="about.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">About</a>
+                <a href="dashboard.html"
+                    class="block px-3 py-2 rounded-md text-base font-medium hover:bg-brand-cream dark:hover:bg-brand-charcoal">Dashboard</a>
+                <div class="border-t border-brand-sand/50 pt-4 flex space-x-6 px-3">
+                    <a href="dashboard.html" class="text-xl"><i class='bx bx-user'></i></a>
+                    <button class="text-xl"><i class='bx bx-heart'></i></button>
+                    <button class="text-xl"><i class='bx bx-shopping-bag'></i></button>
+                    <button id="theme-toggle-mobile" class="text-xl"><i class='bx bx-moon'></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+        <div class="flex-1 overflow-y-auto p-8">
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="bg-white dark:bg-[#111111] p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                    <p class="text-gray-500 text-sm mb-2">Total Revenue</p>
+                    <div class="flex items-end justify-between">
+                        <h3 class="text-2xl font-semibold">$24,592</h3>
+                        <span class="text-xs text-green-500 font-medium bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded flex items-center gap-1"><i class='bx bx-up-arrow-alt'></i> 12%</span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-[#111111] p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                    <p class="text-gray-500 text-sm mb-2">Total Orders</p>
+                    <div class="flex items-end justify-between">
+                        <h3 class="text-2xl font-semibold">1,248</h3>
+                        <span class="text-xs text-green-500 font-medium bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded flex items-center gap-1"><i class='bx bx-up-arrow-alt'></i> 4.5%</span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-[#111111] p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                    <p class="text-gray-500 text-sm mb-2">Active Customers</p>
+                    <div class="flex items-end justify-between">
+                        <h3 class="text-2xl font-semibold">8,432</h3>
+                        <span class="text-xs text-green-500 font-medium bg-green-50 dark:bg-green-900/20 px-2 py-1 rounded flex items-center gap-1"><i class='bx bx-up-arrow-alt'></i> 8%</span>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-[#111111] p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                    <p class="text-gray-500 text-sm mb-2">Low Stock Alerts</p>
+                    <div class="flex items-end justify-between">
+                        <h3 class="text-2xl font-semibold text-red-500">14</h3>
+                        <span class="text-xs text-gray-500 font-medium bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">Products</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Chart Area -->
+                <div class="lg:col-span-2 bg-white dark:bg-[#111111] p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                    <h3 class="font-medium mb-6">Revenue Analytics (Last 7 Days)</h3>
+                    <div class="relative h-64 w-full">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recent Activity / Low Stock -->
+                <div class="bg-white dark:bg-[#111111] p-6 rounded-xl border border-gray-200 dark:border-gray-800 shadow-sm">
+                    <h3 class="font-medium mb-6">Low Stock Items</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-3 bg-red-50 dark:bg-red-900/10 rounded-lg border border-red-100 dark:border-red-900/30">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1599839619722-39751411ea63?w=50&h=50&fit=crop" class="w-10 h-10 rounded object-cover" alt="Product">
+                                <div>
+                                    <p class="text-sm font-medium">Bamboo Tray</p>
+                                    <p class="text-xs text-red-500">2 left in stock</p>
+                                </div>
+                            </div>
+                            <button class="text-xs font-medium text-brand-accent hover:underline">Update</button>
+                        </div>
+                        <div class="flex items-center justify-between p-3 border border-gray-100 dark:border-gray-800 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1595514686259-7f61765c3cc8?w=50&h=50&fit=crop" class="w-10 h-10 rounded object-cover" alt="Product">
+                                <div>
+                                    <p class="text-sm font-medium">Glass Canister (L)</p>
+                                    <p class="text-xs text-orange-500">8 left in stock</p>
+                                </div>
+                            </div>
+                            <button class="text-xs font-medium text-brand-accent hover:underline">Update</button>
+                        </div>
+                        <div class="flex items-center justify-between p-3 border border-gray-100 dark:border-gray-800 rounded-lg">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1601000676342-832f0fb81cb7?w=50&h=50&fit=crop" class="w-10 h-10 rounded object-cover" alt="Product">
+                                <div>
+                                    <p class="text-sm font-medium">Cotton Bin</p>
+                                    <p class="text-xs text-orange-500">12 left in stock</p>
+                                </div>
+                            </div>
+                            <button class="text-xs font-medium text-brand-accent hover:underline">Update</button>
+                        </div>
+                    </div>
+                    <button class="w-full mt-4 py-2 border border-gray-200 dark:border-gray-700 rounded text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">View Inventory</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple Chart Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('revenueChart');
+            if (ctx) {
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                        datasets: [{
+                            label: 'Revenue',
+                            data: [1200, 1900, 1500, 2200, 2800, 3500, 3100],
+                            borderColor: '#C5A880',
+                            backgroundColor: 'rgba(197, 168, 128, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: 'rgba(156, 143, 130, 0.1)' } },
+                            x: { grid: { display: false } }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
